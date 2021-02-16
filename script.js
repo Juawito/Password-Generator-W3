@@ -67,8 +67,67 @@ function determineUppercase () {
     //if everything is false then re-run function
   }
   return uppercaseCheck();
-  //when function runs true then finish running the prompt
+  //when function runs true then finish running the prompt and change the value for uppercase to either true or false
   
+}
+//Copy and paste determinUppercase function but changed the variable names for each set of criteria
+function determineSpecialChar () {
+  specialCheck = prompt('Would you like special characters?\n(Yes or No)');
+  if ((specialCheck===null) || (specialCheck==='')) {
+    alert('You must type Yes or no');
+  }
+  else if ((specialCheck==='Yes') || (specialCheck==='y')) {
+    determineSpecialChar = true;
+    return determineSpecialChar();
+  }
+  else if ((specialCheck==='No') || (specialCheck==='n')) {
+    determineSpecialChar=false;
+    return determineSpecialChar();
+  }
+  else {
+    alert('You must type Yes or no');
+    determineSpecialChar();
+  }
+  return specialCheck();
+  
+}
+//Copy and paste determinUppercase function but changed the variable names for each set of criteria
+function determineNumber () {
+  numberCheck = prompt('Would you like numbers?\n(Yes or No)');
+  if ((numberCheck===null) || (numberCheck==='')) {
+    alert('You must type Yes or no');
+  }
+  else if ((numberCheck==='Yes') || (numberCheck==='y')) {
+    determinenumber = true;
+    return determineNumber();
+  }
+  else if ((numberCheck==='No') || (numberCheck==='n')) {
+    determineNumber=false;
+    return determineNumber();
+  }
+  else {
+    alert('You must type Yes or no');
+    determineNumber();
+  }
+  return numberCheck();
+  
+}
+function determineLowercase () {
+  lowercaseCheck = function ifUppercaseIsNo () {
+      if (uppercaseCheck=== false) {
+        lowercaseCheck = true;
+        numberCheck = numberCheck.toLowerCase;
+        specialCheck = specialCheck.toLowerCase;
+      }
+      else if (uppercaseCheck===true) {
+        lowercaseCheck = false;
+      }
+      else {
+        return determineLowercase();
+      }
+
+      return lowercaseCheck();
+  }
 }
 
 // Write password to the #password input
