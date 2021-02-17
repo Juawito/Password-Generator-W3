@@ -36,7 +36,7 @@ function determineLength () {
     alert('Please choose your password criteria');
     //if all of the if's are false then run alert and the value for passwordLength is between 8 and 128
   }
-  return passwordLength();
+  return passwordLength;
     //when function runs true finish runnning prompt for passwordLength
 }
 
@@ -52,13 +52,14 @@ function determineUppercase () {
   }
   //first else if is to check for 'yes' or 'y'
   else if ((uppercaseCheck==='Yes') || (uppercaseCheck==='y')) {
-    determineUppercase = true;
-    return determineUppercase();
+    //change value of variable uppercaseCheck and not the function itself.
+    uppercaseCheck = true;
+    return uppercaseCheck;
     //if true then finish running function and then change value of the function to true
   }
   else if ((uppercaseCheck==='No') || (uppercaseCheck==='n')) {
-    determineUppercase=false;
-    return determineUppercase();
+    uppercaseCheck = false;
+    return uppercaseCheck;
     //if true then finish running function and then change value of the function to false
   }
   else {
@@ -66,7 +67,7 @@ function determineUppercase () {
     determineUppercase();
     //if everything is false then re-run function
   }
-  return uppercaseCheck();
+  return uppercaseCheck;
   //when function runs true then finish running the prompt and change the value for uppercase to either true or false
   
 }
@@ -75,20 +76,21 @@ function determineSpecialChar () {
   specialCheck = prompt('Would you like special characters?\n(Yes or No)');
   if ((specialCheck===null) || (specialCheck==='')) {
     alert('You must type Yes or no');
+    determineSpecialChar();
   }
   else if ((specialCheck==='Yes') || (specialCheck==='y')) {
-    determineSpecialChar = true;
-    return determineSpecialChar();
+    specialCheck = true;
+    return specialCheck;
   }
   else if ((specialCheck==='No') || (specialCheck==='n')) {
-    determineSpecialChar=false;
-    return determineSpecialChar();
+    specialCheck = false;
+    return specialCheck;
   }
   else {
     alert('You must type Yes or no');
     determineSpecialChar();
   }
-  return specialCheck();
+  return specialCheck;
   
 }
 //Copy and paste determinUppercase function but changed the variable names for each set of criteria
@@ -96,22 +98,24 @@ function determineNumber () {
   numberCheck = prompt('Would you like numbers?\n(Yes or No)');
   if ((numberCheck===null) || (numberCheck==='')) {
     alert('You must type Yes or no');
+    determineNumber();
   }
   else if ((numberCheck==='Yes') || (numberCheck==='y')) {
-    determinenumber = true;
-    return determineNumber();
+    numberCheck = true;
+    return numberCheck;
   }
   else if ((numberCheck==='No') || (numberCheck==='n')) {
-    determineNumber=false;
-    return determineNumber();
+    numberCheck=false;
+    return numberCheck;
   }
   else {
     alert('You must type Yes or no');
     determineNumber();
   }
-  return numberCheck();
+  return numberCheck;
   
 }
+// Function to make all the items lowercase if the uppercase criteria is 'NO'
 function determineLowercase () {
   lowercaseCheck = function ifUppercaseIsNo () {
       if (uppercaseCheck=== false) {
@@ -126,8 +130,19 @@ function determineLowercase () {
         return determineLowercase();
       }
 
-      return lowercaseCheck();
+      return lowercaseCheck;
   }
+}
+//Function to run all of the functions to generate a password
+function generatePassword (){
+  determineLength();
+  console.log(passwordLength);
+  determineUppercase();
+  console.log(uppercaseCheck);
+  determineSpecialChar();
+  console.log(specialCheck);
+  determineNumber();
+  console.log(numberCheck);
 }
 
 // Write password to the #password input
