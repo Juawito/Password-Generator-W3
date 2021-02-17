@@ -11,7 +11,7 @@ var passwordLength;
 var uppercaseCheck;
 var numberCheck;
 var specialCheck;
-var lowercaseCheck;
+//var lowercaseCheck;
 
 //function for determining the length of the password 
 function determineLength () {
@@ -55,11 +55,14 @@ function determineUppercase () {
     //change value of variable uppercaseCheck and not the function itself.
     uppercaseCheck = true;
     return uppercaseCheck;
-    //if true then finish running function and then change value of the function to true
+    //if true then finish running function and then change value of the variable to true
   }
   else if ((uppercaseCheck==='No') || (uppercaseCheck==='n')) {
     uppercaseCheck = false;
+    alert('The password will be lowercase');
+    //determineLowercase(); may not need to run a seperate function
     return uppercaseCheck;
+
     //if true then finish running function and then change value of the function to false
   }
   else {
@@ -116,7 +119,7 @@ function determineNumber () {
   
 }
 // Function to make all the items lowercase if the uppercase criteria is 'NO'
-function determineLowercase () {
+/*function determineLowercase () {
   lowercaseCheck = function ifUppercaseIsNo () {
       if (uppercaseCheck=== false) {
         lowercaseCheck = true;
@@ -132,7 +135,7 @@ function determineLowercase () {
 
       return lowercaseCheck;
   }
-}
+}*/
 //Function to run all of the functions to generate a password
 function generatePassword (){
   determineLength();
@@ -143,7 +146,42 @@ function generatePassword (){
   console.log(specialCheck);
   determineNumber();
   console.log(numberCheck);
+  
+  var characterChoice = lowercaseChar;
+  var passwordChar = ''; 
+
+  if (uppercaseCheck && specialCheck && numberCheck) {
+
+    characterChoice += (uppercaseChar + specialChar + numberChar);
+  }
+  else if (uppercaseCheck && specialCheck) {
+    characterChoice += (uppercaseChar + specialChar);
+  }
+  else if (uppercaseCheck && numberCheck) {
+    characterChoice += (uppercaseChar + numberChar);
+  }
+  else if (specialCheck && numberCheck) {
+    characterChoice += (specialChar + numberChar);
+  }
+  else if (numberCheck) {
+    characterChoice += (numberChar);
+  }
+  else if (specialCheck) {
+    characterChoice += (specialChar);
+  }
+  else if (uppercaseCheck) {
+    characterChoice += (uppercaseChar);
+  }
+  else {
+    characterChoice === lowercaseChar;
+  }
+
+  for (var i = 0; i < passwordLength; i++) { 
+    passwordChar += characterChoice.charAt(Math.floor(Math.random() * characterChoice.Length));
+  }
+  return passwordChar;
 }
+//when running generatePassword it onlu displays lowercase a * password length?
 
 // Write password to the #password input
 function writePassword() {
