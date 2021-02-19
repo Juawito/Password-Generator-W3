@@ -11,24 +11,13 @@ var passwordLength;
 var uppercaseCheck;
 var numberCheck;
 var specialCheck;
-//var lowercaseCheck;
 
 //function for determining the length of the password 
 function determineLength () {
   //creating prompt 
   passwordLength = prompt('How many characters long would you like for the password to be (8-128):');
-  if (passwordLength<8) {
-    alert('Length is not a number between 8-128');
-    determineLength();
-    //if true re-run function
-  }
-  else if (passwordLength>128) {
-    alert('Length is not a number between 8-128');
-    determineLength();
-    //if true re-run function
-  }
-  if (passwordLength===NaN) {
-    alert('Length is not a number between 8-128');
+  if (passwordLength < 8 || passwordLength > 128 || isNaN(passwordLength))  {
+    alert('Length is not a number between 8-128')
     determineLength();
     //if true re-run function
   }
@@ -40,112 +29,13 @@ function determineLength () {
     //when function runs true finish runnning prompt for passwordLength
 }
 
-//function to check for uppercase characters
-function determineUppercase () {
-  //creating prompt
-  uppercaseCheck = prompt('Would you like Uppercase Characters? \n(Yes or No)');
-  //first if statement is to check for null 
-  if ((uppercaseCheck===null) || (uppercaseCheck==='')) {
-    alert('You must type Yes or no');
-    determineUppercase();
-    //if true run entire function again
-  }
-  //first else if is to check for 'yes' or 'y'
-  else if ((uppercaseCheck==='Yes') || (uppercaseCheck==='y')) {
-    //change value of variable uppercaseCheck and not the function itself.
-    uppercaseCheck = true;
-    return uppercaseCheck;
-    //if true then finish running function and then change value of the variable to true
-  }
-  else if ((uppercaseCheck==='No') || (uppercaseCheck==='n')) {
-    uppercaseCheck = false;
-    alert('The password will be lowercase');
-    //determineLowercase(); may not need to run a seperate function
-    return uppercaseCheck;
-
-    //if true then finish running function and then change value of the function to false
-  }
-  else {
-    alert('You must type Yes or no');
-    determineUppercase();
-    //if everything is false then re-run function
-  }
-  return uppercaseCheck;
-  //when function runs true then finish running the prompt and change the value for uppercase to either true or false
-  
-}
-//Copy and paste determinUppercase function but changed the variable names for each set of criteria
-function determineSpecialChar () {
-  specialCheck = prompt('Would you like special characters?\n(Yes or No)');
-  if ((specialCheck===null) || (specialCheck==='')) {
-    alert('You must type Yes or no');
-    determineSpecialChar();
-  }
-  else if ((specialCheck==='Yes') || (specialCheck==='y')) {
-    specialCheck = true;
-    return specialCheck;
-  }
-  else if ((specialCheck==='No') || (specialCheck==='n')) {
-    specialCheck = false;
-    return specialCheck;
-  }
-  else {
-    alert('You must type Yes or no');
-    determineSpecialChar();
-  }
-  return specialCheck;
-  
-}
-//Copy and paste determinUppercase function but changed the variable names for each set of criteria
-function determineNumber () {
-  numberCheck = prompt('Would you like numbers?\n(Yes or No)');
-  if ((numberCheck===null) || (numberCheck==='')) {
-    alert('You must type Yes or no');
-    determineNumber();
-  }
-  else if ((numberCheck==='Yes') || (numberCheck==='y')) {
-    numberCheck = true;
-    return numberCheck;
-  }
-  else if ((numberCheck==='No') || (numberCheck==='n')) {
-    numberCheck=false;
-    return numberCheck;
-  }
-  else {
-    alert('You must type Yes or no');
-    determineNumber();
-  }
-  return numberCheck;
-  
-}
-// Function to make all the items lowercase if the uppercase criteria is 'NO'
-/*function determineLowercase () {
-  lowercaseCheck = function ifUppercaseIsNo () {
-      if (uppercaseCheck=== false) {
-        lowercaseCheck = true;
-        numberCheck = numberCheck.toLowerCase;
-        specialCheck = specialCheck.toLowerCase;
-      }
-      else if (uppercaseCheck===true) {
-        lowercaseCheck = false;
-      }
-      else {
-        return determineLowercase();
-      }
-
-      return lowercaseCheck;
-  }
-}*/
 //Function to run all of the functions to generate a password
 function generatePassword (){
   determineLength();
-  console.log(passwordLength);
-  determineUppercase();
-  console.log(uppercaseCheck);
-  determineSpecialChar();
-  console.log(specialCheck);
-  determineNumber();
-  console.log(numberCheck);
+  uppercaseCheck = confirm('Would you like Uppercase Characters? \n(Yes or No');
+  specialCheck = confirm('Would you like special characters?\n(Yes or No)');
+  numberCheck = confirm('Would you like numbers?\n(Yes or No)');
+
   
   var characterChoice = lowercaseChar;
   var passwordChar = ''; 
@@ -175,13 +65,12 @@ function generatePassword (){
   else {
     characterChoice === lowercaseChar;
   }
-
+  console.log(characterChoice);
   for (var i = 0; i < passwordLength; i++) { 
-    passwordChar += characterChoice.charAt(Math.floor(Math.random() * characterChoice.Length));
+    passwordChar += characterChoice.charAt(Math.floor(Math.random() * characterChoice.length));
   }
   return passwordChar;
 }
-//when running generatePassword it onlu displays lowercase a * password length?
 
 // Write password to the #password input
 function writePassword() {
