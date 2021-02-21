@@ -46,4 +46,6 @@ THEN the password is either displayed in an alert or written to the page
     - Confirms are either true or false already so it was simpler to use than prompts and making if and else statements to return true or false.
 
 ## Link to deployed applicaton
-- 
+- https://juawito.github.io/Password-Generator-W3[https://juawito.github.io/Password-Generator-W3/]
+
+![website of password generator](assets/images/pass-gen.png "Password Genorator")
